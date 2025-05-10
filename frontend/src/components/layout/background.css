@@ -1,0 +1,53 @@
+.partialsBackgroundColor {
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1; 
+    opacity: 0.5;
+}
+
+.partialsBackgroundGradient {
+    background: conic-gradient(from 194.63deg at 100% 0%, #173150 0deg, #451F6D 43.2deg, #3D3959 181.8deg, #173150 360deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.partialsBackgroundImage {
+    background-image: url('src/assets/starbg.jpeg');
+    opacity: 0.5;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.29;
+    z-index: 1;
+}
+
+.partialsBackgroundGradientDesktop {
+    background: linear-gradient(90deg, #1F1A50 0%, #000A73 50%, #27059F 100%);
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
+
+.partialsBackgroundGradientDesktop2 {
+    background: linear-gradient(0deg, rgba(58, 46, 226, 0.12), rgba(58, 46, 226, 0.12));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}

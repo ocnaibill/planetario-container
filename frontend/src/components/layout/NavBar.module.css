@@ -1,0 +1,48 @@
+.navContainer {
+    padding: 1rem 1.5rem;
+    display: inline-flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navList,
+.navList2 {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.navList li a,
+.navList2 li a {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.navList li a:hover,
+.navList2 li a:hover {
+    background: #1F1A50C9;
+}
+
+.navList li a img,
+.navList2 li a img {
+    max-width: 32px;
+    height: auto;
+}
+
+@media (max-width: 1000px) {
+    .navContainer,
+    .navList {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0;
+        gap: 0;
+    }
+}

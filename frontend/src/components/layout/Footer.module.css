@@ -1,0 +1,133 @@
+/* Footer.css */
+.footerContainer {
+    background-size: contain;
+    color: white;
+    padding: 1.5rem 3.5rem;
+    position: relative;
+}
+
+.footerBGColor {
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1; 
+    opacity: 0.5;
+}
+
+.footerBGGradient {
+    background: linear-gradient(90deg, #1F1A50 0%, #000A73 50%, #27059F 100%);
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1; 
+}
+
+.footerBGImage {
+    background-image: url('src/assets/starbg.jpeg');
+    opacity: 0.5;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1; 
+}
+
+.footerContent {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: 10px; /* Espaço entre os itens, opcional */
+    z-index: 2;
+}
+
+.footerContainer img {
+    max-width: 100%;
+    height: auto;      
+    display: block;    
+}
+
+.footerLastItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.footerCentralText {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.footerCentralText span {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.footerLastItem img {
+    max-width: 6.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footerQRBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.footerQRBox p {
+    font-weight: 600;
+    font-style: italic;
+}
+
+.footerQRBox span {
+    font-weight: 300;
+    font-size: 0.75rem;
+}
+
+.GDGLogos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.footerLogo {
+    max-width: 18rem;
+}
+
+@media (max-width: 1100px) {
+    .footerCentralText  {
+        display: none;
+    }
+    .footerContent {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footerContent {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 330px) {
+    .footerQRBox {
+        display: none;
+    }
+}

@@ -1,0 +1,109 @@
+/* Container Geral */
+.agendaContainer {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Conteúdo */
+.agendaContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    padding: 20px;
+}
+
+/* Título */
+.agendaTitle {
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    font-family: 'Helvetica Neue', sans-serif;
+    margin-bottom: 20px;
+    grid-column: 1 / -1;
+    /* Ocupa toda a largura dentro do grid */
+}
+
+/* Container Principal */
+.mainContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* Lado esquerdo maior */
+    gap: 40px;
+    background: rgba(31, 26, 80, 0.85);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Lado Esquerdo */
+.leftSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.labelAgenda {
+    color: white;
+    font-size: 18px;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.inputAgenda {
+    background: #272758;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* Lado Direito */
+.rightSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.timeOption {
+    background: rgba(0, 82, 206, 0.7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.timeOption:hover {
+    background: rgba(0, 82, 206, 0.9);
+}
+
+.timeOption.active {
+    background: rgba(0, 82, 206, 1);
+}
+
+/* Botão Agendar */
+.agendarButtonContainer {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 450px) {
+
+    .agendaContent {
+        padding: 20px 0;
+    }
+    .mainContainer {
+        gap: 1rem;
+        width: 100%;
+        padding: 20px 5px;
+    }
+}

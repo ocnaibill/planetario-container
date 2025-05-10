@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+  background-color: var(--color-background-default);
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-primary);
+}
+
+header,nav {
+  margin: 0;
+  padding: 0;
+}
+
+h1,h2,h3,p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-dark);
+}
+
+ul,li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.mobileWrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.midContent {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  width: 100%;
+}
+
+.midContent main {
+  flex: 1;
+}
+
+
+@media (max-width: 1000px) {
+  .midContent {
+    flex-direction: column;
+  }
+}
+/* Background */
+.backgroundGradient,
+.backgroundGradient2,
+.backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.backgroundGradient {
+  background: conic-gradient(from 194.63deg at 100% 0%,
+              var(--color-azul-prussiano) 0deg,
+              var(--color-tekhelet) 43.2deg,
+              #3D3959 181.8deg,
+              var(--color-azul-prussiano) 360deg);
+}
+.backgroundGradient2 {
+  background: linear-gradient(0deg, rgba(58, 46, 226, 0.12),
+  rgba(58, 46, 226, 0.12));
+}
+.backgroundImage {
+  background-image: url('../assets/starbg.jpeg');
+  background-size: auto;
+  background-position: center;
+  opacity: 0.22;
+}
+
+/* Botões */
+.confirmButton {
+  background: var(--color-background-button);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-family: 'Helvetica Neue', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  max-width: 24rem;
+}
+
+.confirmButton:hover {
+  background: rgba(0, 123, 255, 1);
+}

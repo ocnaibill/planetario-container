@@ -1,0 +1,130 @@
+/* Footer.css */
+.footerContainer {
+    color: white;
+    padding: 1.5rem 3.5rem;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footerContent {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 10px; /* Espaço entre os itens, opcional */
+    z-index: 2;
+}
+
+.footerContainer img {
+    max-width: 100%;
+    height: auto;      
+    display: block;    
+}
+
+.footerContacts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-bottom: 2rem;
+    font-style: normal;
+}
+
+.footerContacts p {
+    font-family: Helvetica;
+    font-size: 2rem;
+    font-style: bold;
+}
+
+.footerContacts span {
+    font-family: Helvetica;
+    gap: 0.25rem;
+    font-size: 1rem;
+    letter-spacing: 0.10rem;
+    line-height: 1.5rem;
+}
+
+.footerContacts img {
+    max-width: 80%;
+    height: auto;      
+    display: block; 
+}
+
+.mapWrapper {
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.GDFLogos {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    flex-wrap: wrap; 
+}
+
+.GDFLogos img {
+    object-fit: contain;
+}
+
+.logoGDF {
+    width: 160px;
+    height: 89px;
+    object-fit: contain;
+}
+
+.logoSECTI {
+    width: 89px;
+    height: 89px;
+    object-fit: contain;
+}
+
+.logoUnDF {
+    width: 114px;
+    height: 97px;
+    object-fit: contain;
+}
+
+
+.footerLogo {
+    max-width: rem;
+    padding-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+    @media (max-width: 768px) {
+        .footerContainer {
+            background-image: url("../../assets/fundoFooterMobile.svg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;        }
+    
+        .footerContent {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .GDFLogos img {
+        max-width: 100%;
+        object-fit: contain;
+        height: auto;
+    }
+
+    .logoGDF {
+        width: 144px;
+        height: auto;
+      }
+    
+      .logoSECTI {
+        width: 84px;
+        height: auto;
+      }
+    
+      .logoUnDF {
+        width: 108px;
+        height: auto;
+      }
+}

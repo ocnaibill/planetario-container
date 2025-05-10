@@ -1,0 +1,10 @@
+:root {
+    --color-light: #FFF;
+    --color-espiga-azul: #0052CE;
+    --color-tekhelet: #451F6D;
+    --color-azul-prussiano: #173150;
+    --font-primary: 'Helvetica Neue', sans-serif;
+    --color-background-default: rgb(138, 120, 120);
+    --color-background-button: rgba(0, 123, 255, 0.8);
+    --color-button-hover: rgba(0, 123, 255, 1);
+}

@@ -1,0 +1,235 @@
+.ingressoContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingressoContent {
+    color: var(--color-light);
+    z-index: 2;
+    display: flex;
+    padding: 8rem;
+    gap: 3rem;
+    font-size: 1.25rem;
+}
+
+.ingressoContent h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ingressoContent>div {
+    background: #173150aa;
+    border-radius: 25px;
+    padding: 2rem 5rem;
+
+}
+
+.ingressoContainer {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Garante que os elementos fiquem empilhados */
+    align-items: center; /* Centraliza os elementos horizontalmente */
+    justify-content: flex-start; /* Alinha os elementos ao topo */
+    padding: 4rem 0;  /* Adiciona espaçamento interno */
+    box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
+    overflow: hidden; /* Evita que elementos vazem */
+}
+
+
+.ingressoCard {
+    width: 452px;
+    height: 701px;
+    position: relative; /* Alterado para relativo */
+    background: rgba(31, 26, 80, 0.67);
+    border-radius: 60px;
+    z-index: 3;
+    margin-top: 2rem; /* Adiciona espaço acima do card */
+}
+
+.ingressoImage {
+    width: 231px;
+    height: 231px;
+    position: absolute;
+    left: 110px;
+    top: 392px;
+}
+
+.ingressoTitle {
+    position: absolute;
+    left: 22px;
+    top: 58px;
+    color: white;
+    font-size: 24px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    line-height: 32px;
+    word-wrap: break-word;
+}
+
+.ingressoDetails {
+    width: 466px;
+    position: absolute;
+    left: 22px;
+    top: 137px;
+    color: white;
+    font-size: 24px;
+    font-family: 'Helvetica';	
+    font-weight: 400;
+    line-height: 32px;
+    word-wrap: break-word;
+}
+
+.cardWrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 3rem auto; /* Adiciona espaçamento acima do card */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os cards horizontalmente */
+    align-items: flex-start; /* Alinha os cards ao topo */
+    max-width: 90%; /* Limita a largura total do contêiner */
+    box-sizing: border-box; /* Inclui padding no cálculo do tamanho */
+}
+
+@media (max-width: 1410px) {
+    .cardWrapper {
+        column-gap: 4rem;
+        /* Espaçamento horizontal */
+    }
+}
+
+@media (max-width: 1280px) {
+    .cardWrapper {
+        column-gap: 4rem;
+        /* Espaçamento horizontal */
+    }
+}
+
+@media (max-width: 550px) {
+    .cardWrapper {
+        width: 100%;
+    }
+
+    .ingressoContent {
+        width: 100%;
+        padding: 0rem;
+        gap: 3rem;
+        font-size: 1rem
+    }
+    .ingressoContainer {
+        padding: 2rem 0;
+    }
+    
+}
+.noTickets {
+    text-align: center;
+    color: var(--color-light);
+    padding: 2rem;
+    font-size: 1.25rem;
+}
+
+.link {
+    background: radial-gradient(circle, #0052cc, #00aaff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 0.25rem;
+}
+
+.prevButton, .nextButton {
+    position: absolute;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1f1a50;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.prevButton {
+    position: absolute;
+    bottom: 20px; /* Posiciona o botão na parte inferior */
+    left: 20px; /* Posiciona o botão no canto esquerdo */
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.226);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF; /* Define a cor das setas como branca */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.nextButton {
+    position: absolute;
+    bottom: 20px; /* Posiciona o botão na parte inferior */
+    right: 20px; /* Posiciona o botão no canto direito */
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.226);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF; /* Define a cor das setas como branca */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.prevButton:hover, .nextButton:hover {
+    background-color: rgba(121, 5, 216, 0.267);
+    transition-duration:  0.4s;
+    color: #FFF; /* Garante que a cor das setas permaneça branca ao passar o mouse */
+}
+
+.pagination {
+    position: absolute;
+    bottom: 60px; /* Move as bolinhas para cima, separando-as dos botões */
+    display: flex;
+    gap: 0.5rem; /* Espaçamento entre as bolinhas */
+    justify-content: center;
+    align-items: center;
+    z-index: 4; /* Certifique-se de que as bolinhas fiquem atrás dos botões */
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8); 
+}
+
+.activeDot {
+    background-color: rgba(255, 255, 255, 1); 
+}

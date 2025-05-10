@@ -1,0 +1,210 @@
+.agendaContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.agendaContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    padding: 5rem 0;
+    width: 100%;
+    height: 100%;
+}
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 90%;
+    min-height: 80%;
+    background-color: #1f1a50bb;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.dates {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.h1Cupula{
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    text-align: center;
+    color: white;
+    padding-bottom: 40px;
+}
+  
+.dateOption {
+    background: #4b0082;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    flex: 1;
+    margin: 0 20px;
+    transition: 0.3s ease, transform 0.2s ease;
+    user-select: none;
+  }
+  
+  .dateOption input[type="radio"] {
+    display: none;
+  }
+  
+  .dateOption input[type="radio"]:checked + * {
+    background: #6a0dad; /* Highlight color for active date */
+    transform: scale(1.1); /* Slightly enlarge the selected date */
+  }
+  
+  .dateOption:hover {
+    background: #5a009b;
+  }
+
+  .dateText{
+    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+
+.timeSelection {
+    display: flex;
+    flex-direction: row;
+    background: rgba(0, 0, 0, 0.2);
+    width: 84rem;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    height: 6rem;
+}
+
+
+  
+.timeOption {
+    align-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
+    height: 30px;
+}
+  
+.timeOption input[type="radio"] {
+    display: none;
+}
+
+.timeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px;
+
+}
+.timeSelection {
+    display: flex;
+    gap: 10px;
+}
+.timeOption input[type="radio"]:checked + * {
+    background-color: #6a0dad; /* Highlight color for selected time */
+    transform: scale(1.1); /* Slightly enlarge selected time */
+}
+.timeOption:hover {
+    background-color: #5a009b;
+}
+  
+
+@media (max-width: 1650px) {
+    .timeSelection {
+        width: 50rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .timeSelection {
+        width: 30rem;
+    }
+    .dates {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+    }
+    .dateOption {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        padding: 2rem 3rem;
+        width: 5rem;
+        flex: 0;
+        box-sizing: border-box;
+        gap: 5px;
+      }
+}
+
+@media (max-width:560px) {
+    .timeSelection {
+        width: 100%;
+        padding: 2rem 1rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 415px) {
+    .buttonConfirmarAgendamento {
+        width: 80%;    
+    }
+}
+
+@media (max-width: 350px) {
+    .buttonConfirmarAgendamento {
+        width: 80%;    
+    }
+    .timeSelection {
+        height: auto;
+    }
+}
+
+.buttonConfirmarAgendamento {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 25px 20px;
+    margin: 20px;
+    width: 400px;    
+    background: rgba(0, 123, 255, 0.8);
+    color: white;
+    border: none;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+}
+
+  

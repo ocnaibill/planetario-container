@@ -1,0 +1,58 @@
+header {
+    position: relative;
+    padding: 2rem 2.5rem;
+}
+
+.headerLogoImage {
+    width: 15rem;
+    height: auto;
+    position: relative;
+    z-index: 10;
+  }
+
+.headerHamburguer {
+    width: 2rem;
+    height: 2rem;
+}
+  
+.headerNav {
+    display: flex;
+    align-items: center;
+    height: auto;
+    position: relative;
+    z-index: 10;
+    justify-content: space-between;
+}
+
+
+.headerContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+}
+
+.greetings{
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.mobileMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .mobileMenu div {
+    height: 0.2rem;
+    background-color: white;
+    border-radius: 2px;
+  }

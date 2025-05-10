@@ -1,0 +1,127 @@
+header {
+    position: relative;
+    padding: 2rem 2.5rem;
+}
+
+.headerLogoImage {
+    width: 100%;
+    max-width: 435px;
+    height: auto;
+  }
+  
+.headerContent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+}
+
+.headerButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.headerButtons button {
+    all: unset;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    color: var(--color-light);
+    background-color: var(--color-espiga-azul);
+    cursor: pointer;
+}
+
+.headerButtons button:hover {
+    background-color: #000A73;
+    transition: 0.3s;
+}
+
+.greetings{
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+@media (max-width: 850px) {
+    .headerButtons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        position: relative;
+        padding: 2rem 0;
+    }
+    .headerContent {
+        flex-direction: column;
+    }
+    .headerButtons {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+    }
+
+    .headerButtons a {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        text-align: center;
+    }
+    .headerButtons a button {
+        border-radius: 0;
+        background-color: #0052CE8F;
+    }
+
+    .headerButtons button {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 0;
+        background-color: #0052CE8F;
+        padding: 0.5rem 0;
+    }
+    .headerButtons h1 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 0;
+        background-color: #0052CE8F;
+    }
+}
+
+@media (max-width: 450px) {
+    .headerLogo {
+        padding: 2rem 0rem;
+    }
+    header {
+        padding: 1rem 0;
+    }
+    .headerLogo {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 350px) {
+    .headerButtons button {
+        padding: 0.5rem 0;
+    }
+}

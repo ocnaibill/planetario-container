@@ -1,0 +1,143 @@
+.agendaContainer {
+    width: 100%;
+    height: 100vh; /* altura total da tela */
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: center;     /* centraliza verticalmente */
+    position: relative;
+    z-index: 1;
+}
+
+
+
+.agendaTitle {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 8rem;
+    margin-top: 36px !important;
+}
+
+.labelAgenda {
+    color: white;
+    font-size: 22px;
+    font-weight: bold !important;
+    text-align: left;
+    padding: 0.5rem 0 0.2rem 0;
+}
+
+.inputAgenda {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 0.8rem;
+    font-size: 14px;
+    max-width: 28rem;
+}
+
+.inputAgenda:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #3399ff;
+}
+
+.agendaContent {
+    background:
+      linear-gradient(rgba(58, 46, 226, 0.08), rgba(58, 46, 226, 0.08)),
+      radial-gradient(
+        231.09% 172.06% at 100% 0%,
+        rgba(78, 20, 138, 0.6) 12%,
+        rgba(37, 31, 82, 0.5) 50.5%,
+        rgba(58, 90, 128, 0.4) 75%
+      ),
+      url(/src/assets/starbg.jpeg);
+    border-radius: 25px;
+    padding: 2rem 5rem;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0.75;
+    min-height: 45rem;
+    width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .agendaContent .inputAgenda,
+.agendaContent select.inputAgenda {
+  width: 150%;
+  max-width: 320px;
+  min-height: 20px;
+  box-sizing: border-box;    
+  padding: 0.8rem 2rem;        
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 20px;
+  margin: 0 0 1rem;
+  align-self: center;
+  text-align: center;
+}
+  
+  .agendaContent :global(.confirmButton) {
+    width: 120px;
+    border-radius: 25px !important;
+    padding: 0.75rem 1.5rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem auto 0 !important;
+    transition: background 0.2s;
+  }
+  
+.agendaContent :global(.confirmButton):hover {
+  background-color: rgba(78, 2, 165, 0.432) !important;
+  }
+
+
+.agendaContent > label,
+.agendaContent :global(.labelAgenda) {
+  margin-left: 0 !important;
+  margin: 0 auto 0.5rem !important;
+  text-align: center;
+  width: 100%;
+}
+
+.agendaContent {
+    padding-bottom: 80px !important;
+  }
+  
+.agendaContent :global(.confirmButton) {
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+  }
+
+  .agendaContent > label,
+  .agendaContent > select,
+  .agendaContent > input,
+  .agendaContent > button {
+      margin: 0 auto 1rem; 
+      text-align: center;
+  }
+
+.agendaContent select.inputAgenda {
+    background-color: rgb(39, 40, 88) !important;
+    color: #fff !important;
+  }
+  
+  .agendaContent select.inputAgenda option {
+    background-color: rgb(39, 40, 88) !important;
+    color: #fff !important;
+    text-align: center;
+  }
+  
+  .agendaContent select.inputAgenda:focus {
+    background-color: rgb(39, 40, 88) !important;
+    outline: none;
+  }
