@@ -3,39 +3,49 @@ version: "3.8"
 services:
   mysql:
     image: mysql:8.0
-    restart: always
-    container_name: mysql_db
+    container_name: mysql-planetario
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: planetario
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
+    networks:
+      - planetario-net
 
   backend:
-    build: ./backend
-    container_name: java_backend
+    build:
+      context: ./backend
+    container_name: backend-planetario
+    restart: unless-stopped
     depends_on:
       - mysql
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/planetario
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      DB_HOST: mysql
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     ports:
       - "8080:8080"
+    networks:
+      - planetario-net
 
   frontend:
-    build: ./frontend
-    container_name: react_frontend
+    build:
+      context: ./frontend
+    container_name: frontend-planetario
+    restart: unless-stopped
     depends_on:
       - backend
     ports:
       - "3000:3000"
-    stdin_open: true
-    tty: true
+    networks:
+      - planetario-net
 
 volumes:
-  mysql_data:
+  mysql-data:
+
+networks:
+  planetario-net:
+    driver: bridge
