@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './Agendamentos.module.css';
 import '../../styles/global.css';
+import Toast from "../../utils/toast";
 import { useUser } from "../../contexts/UserContext";
 import ticketService from "../../services/ticket.services";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +26,7 @@ function Agendamentos() {
 
     const handleSubmit = async (e) => {
         if (!isAuthenticated) {
-            alert("Usuário não autenticado!")
+            Toast.info("Você não está logado!")
             navigate('/login')
             return
         }
@@ -37,12 +38,12 @@ function Agendamentos() {
             };
 
            try{
-                ticketService.createTicket(session)
-                console.log("Agendamento confirmado!");
+                await ticketService.createTicket(session)
+                Toast.success("Agendamento confirmado!")
             }
             catch (e)  {
-                console.log(e)
-                console.warn(`Erro ao efetuar agendamento: ${e}`)
+                console.error(e)
+                Toast.error("Erro ao efetuar agendamento:", e.response.data.message)
             }   
         }; 
         

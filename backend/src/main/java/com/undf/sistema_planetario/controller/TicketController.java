@@ -23,23 +23,14 @@ public class TicketController {
 
     @PostMapping()
     ResponseEntity<TicketResponseDto> emitTicket(@Valid @RequestBody TicketRequestDto ticketRequestDto) {
-        try {
             TicketResponseDto savedTicket = ticketService.createTicket(ticketRequestDto);
-
             return new ResponseEntity<>(savedTicket, HttpStatus.CREATED);
-        } catch(TicketAlreadyEmittedException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
     }
 
     @GetMapping("/{user_id}")
     ResponseEntity<List<TicketResponseDto>> getMyTickets(@PathVariable Long user_id) {
-        try {
-            List<TicketResponseDto> savedTickets = ticketService.getAllUserTickets(user_id);
-            return new ResponseEntity<>(savedTickets, HttpStatus.OK);
-        } catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+        List<TicketResponseDto> savedTickets = ticketService.getAllUserTickets(user_id);
+        return new ResponseEntity<>(savedTickets, HttpStatus.OK);
     }
 
     @PutMapping("/{ticket_code}")

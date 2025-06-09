@@ -6,6 +6,9 @@ import AppRoutes from './routes/AppRoutes';
 import MobileRoutes from './routes/MobileRoutes';
 import { useState, useEffect } from 'react';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 import Footer from './components/layout/Footer';
 import NavBar from './components/layout/NavBar';
 import Header from './components/layout/Header';
@@ -30,6 +33,7 @@ function App() {
   }, []);
 
   return (
+    <>
     <Router>
       {isMobile ? (
         <div className={'mobileWrapper'}>
@@ -55,6 +59,15 @@ function App() {
       </div>
       )}
     </Router>
+    <ToastContainer 
+      position='top-center'
+      autoClose={4000}
+      hideProgressBar={false}
+      closeOnClick
+      pauseOnHover
+      theme='colored'
+    />
+    </>
   );
 }
 

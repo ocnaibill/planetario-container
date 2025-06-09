@@ -5,6 +5,7 @@ const UserContext = createContext(null);
 
 export function UserProvider({children}) {
     const [user, setUser] = useState(null)
+    const [roles, setRoles] = useState([])
     const [loading, setLoading] = useState(true)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -13,16 +14,18 @@ export function UserProvider({children}) {
             setLoading(true);
 
             try {
-                const validated = await authService.isTokenValid()
-                setIsAuthenticated(validated);
+                const response = await authService.validateToken()
+                setIsAuthenticated(response.isValid);
+                const roles = response.data.roles.map(role => role.authority)
+                setRoles(roles)
 
-                if (validated) {
+                if (response.isValid) {
                     const data = await authService.getLoggedUserData();
                     setUser(data);  
                 }
 
             } catch (err) {
-                console.warn("Usuário não autenticado.");
+                console.warn("Usuário não autenticado.", err);
                 setIsAuthenticated(false);
                 setUser(null)
             } finally {
@@ -34,20 +37,34 @@ export function UserProvider({children}) {
     }, []);
 
     const login = async (email, password) => {
-        await authService.login({ email, password });
-        const loggedUser = await authService.getLoggedUserData();
-        setIsAuthenticated(true)
-        setUser(loggedUser);
+        try {
+            const response = await authService.login({ email, password });
+    
+            if (response) {
+                const roles = response.roles.map(role => role.authority)
+                setRoles(roles)
+            }
+    
+            const loggedUser = await authService.getLoggedUserData();
+            setIsAuthenticated(true)
+            setUser(loggedUser);
+        }
+        catch (error) {
+            console.error("Erro no login:", error)
+            throw error?.response?.data || "Erro ao fazer login.";
+        }
     }
 
     const logout = async () => {
         await authService.logout();
         setIsAuthenticated(false)
+        setRoles([])
         setUser(null)
+
     }
 
     return (
-        <UserContext.Provider value={{ user, isAuthenticated, loading, login, logout }}>
+        <UserContext.Provider value={{ user, roles, isAuthenticated, loading, login, logout }}>
             {children}
         </UserContext.Provider>
     )

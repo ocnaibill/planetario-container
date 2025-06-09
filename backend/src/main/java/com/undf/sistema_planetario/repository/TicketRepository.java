@@ -12,5 +12,5 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     Optional<List<Ticket>> findAllByVisitorId(Long id);
 
-    Boolean existsByVisitorIdAndCreatedAtBetween(Long visitorId, LocalDate from, LocalDate to);
+    Boolean existsByVisitorIdAndVisitDate(Long visitorId, LocalDate createdAt);
 }

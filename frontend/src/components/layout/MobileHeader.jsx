@@ -17,7 +17,7 @@ const MobileHeader = () => {
         <div className={styles.headerContent}></div>
             <div className={styles.headerNav}>
                 <img className={styles.headerLogoImage}
-                 src="src/assets/logo-branca-canto.svg"
+                 src="/assets/logo-branca-canto.svg"
                  alt="Logo do planetário" 
                   onClick={() => window.location.href = "/"}
                   style={{ cursor: "pointer" }}

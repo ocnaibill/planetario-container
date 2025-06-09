@@ -40,13 +40,12 @@ function Login() {
     e.preventDefault()
 
     try {
-      login(email, password)
+      await login(email, password)
+      Toast.success("Login realizado com sucesso!")
+      navigate('/')
     }
-    catch (error)  {
-      setErrors({...errors, password:'Erro ao efetuar login, verifique sua senha e email'})
-    }
-    finally {
-      navigate('/');
+    catch (errData)  {
+      Toast.error(errData.error)
     }
   };
   

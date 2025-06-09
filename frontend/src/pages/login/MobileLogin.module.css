@@ -46,7 +46,7 @@
         rgba(37, 31, 82, 0.5) 50.5%,
         rgba(58, 90, 128, 0.4) 75%
       ),
-      url(/src/assets/starbg.jpeg);
+      url(/assets/starbg.jpeg);
     border-radius: 25px;
     padding: 2rem 5rem;
     backdrop-filter: blur(6px);

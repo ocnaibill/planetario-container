@@ -1,5 +1,7 @@
 package com.undf.sistema_planetario.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.undf.sistema_planetario.exception.InvalidTokenException;
 import com.undf.sistema_planetario.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -34,20 +37,18 @@ public class SecurityFilter extends OncePerRequestFilter {
             if (token != null) {
                 String email = tokenService.validateToken(token);
 
-                if (email != null) {
-                    UserDetails user = userRepository.findByEmail(email);
+                UserDetails user = userRepository.findByEmail(email)
+                        .orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado"));
 
-                    UsernamePasswordAuthenticationToken auth =
-                            new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                UsernamePasswordAuthenticationToken auth =
+                        new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
-                    SecurityContextHolder.getContext().setAuthentication(auth);
-                }
+                SecurityContextHolder.getContext().setAuthentication(auth);
             }
+        } catch (InvalidTokenException | UsernameNotFoundException e) {
+            this.handleError(response, HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
         } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.setContentType("application/json");
-            response.getWriter().write("{\"error\": \"Token inválido ou expirado\"}");
-            return;
+            this.handleError(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
 
         filterChain.doFilter(request, response);
@@ -66,5 +67,13 @@ public class SecurityFilter extends OncePerRequestFilter {
         }
 
         return null;
+    }
+
+    private void handleError(HttpServletResponse response, int status, String message) throws IOException {
+        response.setStatus(status);
+        response.setContentType("application/json");
+        response.getWriter().write(new ObjectMapper().writeValueAsString(
+                Map.of("status", status, "message", message)
+        ));
     }
 }

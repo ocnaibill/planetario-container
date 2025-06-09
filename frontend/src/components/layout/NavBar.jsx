@@ -1,8 +1,11 @@
 import styles from './NavBar.module.css'
 import './background.css'
 import { Link } from 'react-router-dom'
+import { useUser } from '../../contexts/UserContext'
 
 function Footer() {
+  const { roles } = useUser()
+
   return (
     <nav className={styles.navContainer}>
       <div className="partialsBackgroundColor"></div>
@@ -30,6 +33,12 @@ function Footer() {
           <img src="src/assets/navIngressos.svg" alt="ícone ingresso cúpula navegação" />
           <p>Visitantes</p>
         </Link></li>
+        {(roles.includes("ROLE_ADMIN")) && (
+          <li><Link to="/scanner">
+            <img src="src/assets/navScanner.svg" alt="ícone ingresso cúpula navegação" />
+            <p>Leitor QR Code</p>
+        </Link></li>
+        )}
       </ul>
       <ul className={styles.navList2}>
         <li><a href="https://ouvidoria.df.gov.br/canal-atendimento-162/">

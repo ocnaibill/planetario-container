@@ -2,7 +2,7 @@ import apiClient from "./apiClient";
 
 export const ticketService = {
     async createTicket(body){
-        return await apiClient.post("tickets", body).data;
+        return await apiClient.post("tickets", body);
     },
 
     async getMyTickets(user_id){
@@ -13,6 +13,10 @@ export const ticketService = {
     async createVisit(body){
         return await apiClient.post('tickets', body).data;
     },
+
+    async approveTickect(ticketCode) {
+        return await apiClient.put(`tickets/${ticketCode}`)
+    }
 };
 
 export default ticketService

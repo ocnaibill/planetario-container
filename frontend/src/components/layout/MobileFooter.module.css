@@ -97,7 +97,7 @@
 @media (max-width: 768px) {
     @media (max-width: 768px) {
         .footerContainer {
-            background-image: url("../../assets/fundoFooterMobile.svg");
+            background-image: url("/assets/fundoFooterMobile.svg");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;        }

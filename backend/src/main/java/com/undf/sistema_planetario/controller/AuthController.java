@@ -4,6 +4,8 @@ import com.undf.sistema_planetario.dto.LoginRequestDto;
 import com.undf.sistema_planetario.dto.LoginResponseDto;
 import com.undf.sistema_planetario.dto.UserRequestDto;
 import com.undf.sistema_planetario.dto.UserResponseDto;
+import com.undf.sistema_planetario.exception.UnauthorizedException;
+import com.undf.sistema_planetario.exception.UserAlreadyExistsException;
 import com.undf.sistema_planetario.model.User;
 import com.undf.sistema_planetario.security.TokenService;
 import com.undf.sistema_planetario.service.AuthService;
@@ -65,7 +67,7 @@ public class AuthController {
     @PostMapping("validate")
     public ResponseEntity<LoginResponseDto> validate(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            throw new UnauthorizedException("Usuário não encontrado.");
         }
 
         LoginResponseDto user = new LoginResponseDto(userDetails.getUsername(), userDetails.getAuthorities());
@@ -73,7 +75,9 @@ public class AuthController {
     }
     @PostMapping("register")
     public ResponseEntity<UserResponseDto> register(@Valid @RequestBody UserRequestDto userRequest) {
-        if(this.authService.loadUserByUsername(userRequest.getEmail()) != null) return ResponseEntity.badRequest().build();
+        this.authService.findUserByEmail(userRequest.getEmail()).ifPresent(user -> {
+            throw new UserAlreadyExistsException("O e-mail informado já está em uso.");
+        });
 
         UserResponseDto user = userService.createUser(userRequest);
         return new ResponseEntity<>(user, HttpStatus.CREATED);

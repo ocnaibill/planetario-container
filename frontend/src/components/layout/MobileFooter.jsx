@@ -6,7 +6,7 @@ const MobileFooter = () => {
       <footer className={styles.footerContainer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLogo}>
-            <img src="src/assets/logo-branca-canto.svg" alt="Logo do planetário" />
+            <img src="/assets/logo-branca-canto.svg" alt="Logo do planetário" />
           </div>
           
             <div className={styles.footerContacts}>
@@ -33,14 +33,14 @@ const MobileFooter = () => {
             <div className={styles.GDFLogos}> 
               <a href="https://www.df.gov.br/" target="_blank" rel="noopener noreferrer">
                 <img 
-                  src="src/assets/GDFLogo.png" 
+                  src="/assets/GDFLogo.png" 
                   alt="Logo do GDF" 
                   className={styles.logoGDF}  
                 />
               </a>
               <a href="https://secti.df.gov.br/" target="_blank" rel="noopener noreferrer">
                 <img 
-                  src="src/assets/SECTILogo.png" 
+                  src="/assets/SECTILogo.png" 
                   alt="Logo da SECTI" 
                   className={styles.logoSECTI}  
                 />
@@ -48,7 +48,7 @@ const MobileFooter = () => {
               <a href="http://universidade.df.gov.br/" target="_blank" rel="noopener noreferrer">
                 <img 
                   className={`${styles.logoUnDF} ${styles.transparentLogo}`}  
-                  src="src/assets/UnDFLogo.png" 
+                  src="/assets/UnDFLogo.png" 
                   alt="Logo da UnDF" 
                 />
               </a>

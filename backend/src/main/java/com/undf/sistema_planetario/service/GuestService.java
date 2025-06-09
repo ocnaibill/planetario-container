@@ -4,11 +4,14 @@ import com.undf.sistema_planetario.dto.GuestRequestDto;
 import com.undf.sistema_planetario.dto.GuestResponseDto;
 import com.undf.sistema_planetario.event.GuestCreatedEvent;
 import com.undf.sistema_planetario.exception.ResourceNotFoundException;
+import com.undf.sistema_planetario.exception.UserAlreadyExistsException;
 import com.undf.sistema_planetario.mapper.GuestMapper;
 import com.undf.sistema_planetario.model.Guest;
 import com.undf.sistema_planetario.repository.GuestRepository;
+import com.undf.sistema_planetario.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +24,17 @@ public class GuestService {
     GuestRepository guestRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     ApplicationEventPublisher publisher;
 
     public GuestResponseDto createGuest(GuestRequestDto guestDto) {
+        userRepository.findByEmail(guestDto.getEmail())
+                .ifPresent(user -> {
+                    throw new UserAlreadyExistsException("Já existe um usuário associado a esse email.");
+                });
+
         Guest guest = GuestMapper.INSTANCE.toEntity(guestDto);
         Guest savedGuest = guestRepository.save(guest);
 

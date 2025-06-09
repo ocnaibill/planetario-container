@@ -2,6 +2,7 @@ package com.undf.sistema_planetario.controller;
 
 import com.undf.sistema_planetario.dto.GuestRequestDto;
 import com.undf.sistema_planetario.dto.GuestResponseDto;
+import com.undf.sistema_planetario.exception.UserAlreadyExistsException;
 import com.undf.sistema_planetario.service.GuestService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,6 +4,7 @@ import com.undf.sistema_planetario.dto.UserRequestDto;
 import com.undf.sistema_planetario.dto.UserResponseDto;
 import com.undf.sistema_planetario.event.UserRegisteredEvent;
 import com.undf.sistema_planetario.exception.ResourceNotFoundException;
+import com.undf.sistema_planetario.exception.UserAlreadyExistsException;
 import com.undf.sistema_planetario.mapper.UserMapper;
 import com.undf.sistema_planetario.model.User;
 import com.undf.sistema_planetario.model.enums.UserRole;
@@ -29,6 +30,10 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public UserResponseDto createUser(UserRequestDto userDto){
+        userRepository.findByEmail(userDto.getEmail())
+                .ifPresent(user -> {
+                    throw new UserAlreadyExistsException("Já existe um usuário associado a esse email.");
+                });
         User user = UserMapper.INSTANCE.toEntity(userDto);
 
         String passwordEncrypted = passwordEncoder.encode(userDto.getPassword());
@@ -52,7 +57,9 @@ public class UserService {
     }
 
     public UserResponseDto getUserByEmail(String email){
-        UserDetails savedUser = userRepository.findByEmail(email);
+        UserDetails savedUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Nenhum usuário associado a este email."));
+
         return UserMapper.INSTANCE.toResponseDto((User) savedUser);
     }
 }

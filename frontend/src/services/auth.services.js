@@ -11,9 +11,9 @@ const authService = {
         await apiClient.post("auth/logout");
     },
 
-    async isTokenValid() {
+    async validateToken() {
         const response = await apiClient.post("auth/validate");
-        return response.status === 200
+        return { isValid: response.status === 200, data: response.data}
     },
 
     async registrateUser(body) {

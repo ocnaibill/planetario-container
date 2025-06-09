@@ -34,7 +34,7 @@
 }
 
 .navBGImage {
-    background-image: url('src/assets/starbg.jpeg');
+    background-image: url('/assets/starbg.jpeg');
     opacity: 0.5;
     background-size: contain;
     position: absolute;
@@ -113,3 +113,24 @@
     transition: transform 0.4s ease, opacity 0.3s ease;
   }
   
+.logoutButton {
+  display: flex; /* Para alinhar o conteúdo interno */
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  gap: 1.5rem; /* Espaçamento entre o ícone e o texto, se necessário */
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  width: 100%; /* Garante que o botão ocupe o mesmo espaço que os links */
+  text-align: center; /* Centraliza o texto */
+}
+
+.logoutButton:hover {
+  background-color: darkblue;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}

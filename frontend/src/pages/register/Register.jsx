@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/global.css';
 import '../../components/layout/forms.css';
+import Toast from '../../utils/toast';
 import authService from '../../services/auth.services';
 import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -30,6 +31,8 @@ function Register() {
   const [countryOptions, setCountryOptions] = useState([])
   const [stateOptions, setStateOptions]     = useState([])
   const [cityOptions, setCityOptions]       = useState([])
+  const [isLoading, setLoading] = useState(false)
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -166,19 +169,22 @@ function Register() {
     e.preventDefault()
     try {
       if(validateForm()) {
-        let res = await authService.registrateUser(formData)
-        // storageService.setLoggedUser(res.data);
+        setLoading(true)
+        await authService.registrateUser(formData)
+        setLoading(false)
+        Toast.success("Cadastro realizado com sucesso!")
         navigate('/');
-        // setUser(storageService.getLoggedUser());
       }
     }
     catch (error)  {
       console.error(error)
-      alert("Erro ao cadastrar")
+      setLoading(false)
+      Toast.error("Erro ao cadastrar!")
     }
   };
   
   return (
+    <>
     <div className="formContainer">
       <div className="formContent">
         <form onSubmit={handleSubmit} className={`formStyle ${styles.card}`}>
@@ -378,6 +384,12 @@ function Register() {
         </form>
       </div>
     </div>
+    {isLoading && (
+          <div className={styles.loadscreen}>
+            <div className={styles.loader}></div>
+          </div>
+        )}
+    </>
   )
 }
 

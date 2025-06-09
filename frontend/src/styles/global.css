@@ -81,7 +81,7 @@ ul,li {
   rgba(58, 46, 226, 0.12));
 }
 .backgroundImage {
-  background-image: url('../assets/starbg.jpeg');
+  background-image: url('/assets/starbg.jpeg');
   background-size: auto;
   background-position: center;
   opacity: 0.22;

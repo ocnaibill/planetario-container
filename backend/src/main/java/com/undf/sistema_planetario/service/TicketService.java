@@ -10,6 +10,7 @@ import com.undf.sistema_planetario.model.Ticket;
 import com.undf.sistema_planetario.model.Visitor;
 import com.undf.sistema_planetario.model.enums.TicketState;
 import com.undf.sistema_planetario.repository.TicketRepository;
+import com.undf.sistema_planetario.repository.UserRepository;
 import com.undf.sistema_planetario.repository.VisitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,18 +26,18 @@ public class TicketService {
     TicketRepository ticketRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     VisitorRepository visitorRepository;
 
     public TicketResponseDto createTicket(TicketRequestDto ticketRequest) {
-        LocalDate startDay = ticketRequest.getVisitDate();
-        LocalDate endDay = startDay.plusDays(1);
-
-        if(ticketRepository.existsByVisitorIdAndCreatedAtBetween(ticketRequest.getVisitorId(), startDay, endDay)){
-            throw new TicketAlreadyEmittedException("Ingresso já emitido no dia de hoje.");
+        if(ticketRepository.existsByVisitorIdAndVisitDate(ticketRequest.getVisitorId(), ticketRequest.getVisitDate())) {
+            throw new TicketAlreadyEmittedException("Ingresso já emitido para este dia.");
         }
 
         Visitor visitor = visitorRepository.findById(ticketRequest.getVisitorId())
-                .orElseThrow(() -> new IllegalStateException("Nenhum visitante encontrado com o ID informado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Nenhum visitante encontrado com o ID informado."));
 
         Ticket ticket = new Ticket();
         String ticketCode = UUID.randomUUID().toString();
@@ -65,8 +66,11 @@ public class TicketService {
     }
 
     public List<TicketResponseDto> getAllUserTickets(Long id) {
+        userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Nenhum usuário associado a este ID."));
+
         List<Ticket> tickets = ticketRepository.findAllByVisitorId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuário não possui ingressos."));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não possui nenhum ingresso emitido."));
 
         return TicketMapper.INSTANCE.toListDto(tickets);
     }
@@ -75,8 +79,12 @@ public class TicketService {
         Ticket savedTicket = ticketRepository.findByTicketCode(ticketCode)
                 .orElseThrow(() -> new ResourceNotFoundException("Ingresso não existente!"));
 
+        if(savedTicket.getState() == TicketState.EXPIRED){
+            throw new InvalidTicketException("O ingresso informado esta expirado.");
+        }
+
         if(savedTicket.getState() != TicketState.EMITTED){
-            throw new InvalidTicketException("O ingresso informado não é mais válido para aprovação!");
+            throw new InvalidTicketException("O ingresso informado não é mais válido para aprovação.");
         }
 
         savedTicket.setState(TicketState.APPROVED);

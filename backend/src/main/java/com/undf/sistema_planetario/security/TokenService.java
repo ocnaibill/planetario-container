@@ -4,7 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.undf.sistema_planetario.dto.LoginRequestDto;
+import com.undf.sistema_planetario.exception.InvalidTicketException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -38,8 +40,10 @@ public class TokenService {
                     .build()
                     .verify(token)
                     .getSubject();
+        } catch (TokenExpiredException exception) {
+            throw new InvalidTicketException("Token expirado.");
         } catch (JWTVerificationException exception) {
-            return null;
+            throw new InvalidTicketException("Token inválido.");
         }
     }
 

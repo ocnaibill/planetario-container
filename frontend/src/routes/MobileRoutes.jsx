@@ -8,6 +8,7 @@ import Ingressos from "../pages/ingressos/Ingressos"
 import Agendamentos from '../pages/agendamentos/MobileAgendamentos'
 import Cupula from '../pages/cupula/Cupula'
 import Perfil from "../components/Perfil";
+import Scanner from "../pages/scanner/Scanner";
 
 function MobileRoutes() {
     return (
@@ -20,6 +21,7 @@ function MobileRoutes() {
             <Route path="/agendamentos" element={<Agendamentos />} />
             <Route path="/cupula" element={<Cupula />} />
             <Route path="/me" element={<Perfil />} />
+            <Route path="/scanner" element={<Scanner />} />
         </Routes>
     )
 }

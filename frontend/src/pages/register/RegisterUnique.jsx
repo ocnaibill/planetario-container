@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Country, State, City } from 'country-state-city'
+import { useNavigate } from 'react-router-dom'
 import '../../styles/global.css'
 import '../../components/layout/forms.css'
+import Toast from '../../utils/toast'
 import authService from '../../services/auth.services'
 import { cidadesDF } from '../../utils/formOptions'
 import styles from './RegisterUnique.module.css'
@@ -25,6 +27,9 @@ function RegisterUnique() {
   const [countryOptions, setCountryOptions] = useState([])
   const [stateOptions, setStateOptions] = useState([])
   const [cityOptions, setCityOptions] = useState([])
+  const [isLoading, setLoading] = useState(false)
+  
+  const navigate = useNavigate()
 
   useEffect(() => {
     setCountryOptions(Country.getAllCountries())
@@ -149,15 +154,25 @@ useEffect(() => {
     e.preventDefault()
     if (!validateForm()) return
     try {
+      setLoading(true)
       await authService.registrateGuest(formData)
-      // ... redirecionar ou notificar ...
+      setLoading(false)
+      navigate('/')
+      Toast.success("Visita cadastrada. Seu ingresso será enviado ao seu e-mail!")      
     } catch (err) {
       console.error(err)
-      alert('Erro ao cadastrar visitante')
+      Toast.error('Erro ao cadastrar visita única!' )
+      setLoading(false)
+
+      const { message, status } = err.response.data
+      if (status == 409) {
+        Toast.warning(message)
+      }
     }
   }
   
   return (
+    <>
     <div className="formContainer">
       <div className="formContent">
         <form onSubmit={handleSubmit} className={`formStyle ${styles.card}`}>
@@ -334,6 +349,12 @@ useEffect(() => {
         </form>
       </div>
     </div>
+    {isLoading && (
+      <div className={styles.loadscreen}>
+        <div className={styles.loader}></div>
+      </div>
+    )}
+    </>
   )
 }
 
